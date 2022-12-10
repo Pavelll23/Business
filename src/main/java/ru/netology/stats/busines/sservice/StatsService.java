@@ -14,7 +14,6 @@ public class StatsService {
         }
         return minMonth + 1;
     }
-
     public int amountSales(int[] sales) { // Сумма всех продаж
         int result = 0;
         for (int sale : sales) {
@@ -33,24 +32,17 @@ public class StatsService {
 
     public int maxSales(int[] sales) { // Номер месяца пик продаж
         int maxMonth = 0;
-        int maxCash = 0;
-        int [] result = new int[13];
-        int numbers = 0;
-        for (int sale : sales){
-            if (sale >= maxCash){
-                maxCash = sale;
-            }
-        }
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
         for (long sale : sales) {
-            numbers = numbers + 1;
-            if (sale >= maxCash) {
-               result[numbers] = numbers;
+            // sales[minMonth] - продажи в месяце minMonth
+            // sale - продажи в рассматриваемом месяце
+            if (sale >= sales[maxMonth]) {
+                maxMonth = month;
             }
+            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
         }
-        return result[numbers];
+        return maxMonth + 1;
     }
-
-
 
     public int numbersBelowAvarage(int[] sales) { // Количество месяцев с продажами ниже среднего
         int result = 0;

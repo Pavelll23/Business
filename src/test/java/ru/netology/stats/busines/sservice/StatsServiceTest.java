@@ -39,7 +39,7 @@ public class StatsServiceTest {
     public void maxSales(){
         StatsService service = new StatsService();
         int[] sale = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 7 ;
+        int expected = 8 ;
         int actual = service.maxSales(sale);
 
         Assertions.assertEquals(expected,actual);
