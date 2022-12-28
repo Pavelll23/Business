@@ -14,6 +14,7 @@ public class StatsService {
         }
         return minMonth + 1;
     }
+
     public int amountSales(int[] sales) { // Сумма всех продаж
         int result = 0;
         for (int sale : sales) {
@@ -22,12 +23,10 @@ public class StatsService {
         return result;
     }
 
-    public int avarageAmount(int[] sales) { // Средняя сумма продаж в месяц
-        int result = 0;
-        for (int sale : sales) {
-            result = result + sale;
-        }
-        return result / sales.length;
+    public int avarageAmount(int[] sales) {  // Средняя сумма продаж в месяц
+        int sum = amountSales(sales) / sales.length;
+
+        return sum;
     }
 
     public int maxSales(int[] sales) { // Номер месяца пик продаж
@@ -45,15 +44,10 @@ public class StatsService {
     }
 
     public int numbersBelowAvarage(int[] sales) { // Количество месяцев с продажами ниже среднего
-        int result = 0;
         int monthMinSale = 0;
-        int avarage = 0;
+
         for (int sale : sales) {
-            result = result + sale;
-        }
-        avarage = result / sales.length;
-        for (int sale : sales) {
-            if (sale < avarage) {
+            if (sale < avarageAmount(sales)) {
                 monthMinSale = monthMinSale + 1;
             }
         }
@@ -61,15 +55,10 @@ public class StatsService {
     }
 
     public int monthsAboveAvarage(int[] sales) { // Количество месяцев с продажами выше среднего
-        int result = 0;
         int monthMaxSale = 0;
-        int avarage = 0;
+
         for (int sale : sales) {
-            result = result + sale;
-        }
-        avarage = result / sales.length;
-        for (int sale : sales) {
-            if (sale > avarage) {
+            if (sale > avarageAmount(sales)) {
                 monthMaxSale = monthMaxSale + 1;
             }
         }
